@@ -14,10 +14,10 @@ services:
     environment:
       NODE_ENV: production
       PORT: 3000
-      DATABASE_URL: postgresql://${POSTGRES_USER:-mapuser}:${POSTGRES_PASSWORD:-map_dev}@postgres:5432/${POSTGRES_DB:-mapdb}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-mapuser}:${POSTGRES_PASSWORD:?Definir POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-mapdb}
       AUTH_USERNAME: ${AUTH_USERNAME:-admin}
-      AUTH_PASSWORD: ${AUTH_PASSWORD:-mapa2025}
-      AUTH_SESSION_TOKEN: ${AUTH_SESSION_TOKEN:-dev-token-change-me}
+      AUTH_PASSWORD: ${AUTH_PASSWORD:?Definir AUTH_PASSWORD}
+      AUTH_SESSION_TOKEN: ${AUTH_SESSION_TOKEN:?Definir AUTH_SESSION_TOKEN}
       OSRM_URL: ${OSRM_URL:-}
     depends_on:
       postgres:
@@ -32,7 +32,7 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-mapuser}
-      POSTGRES_PASS: ${POSTGRES_PASSWORD:-map_dev}
+      POSTGRES_PASS: ${POSTGRES_PASSWORD:?Definir POSTGRES_PASSWORD}
       POSTGRES_DBNAME: ${POSTGRES_DB:-mapdb}
     ports:
       - "${POSTGRES_PORT:-5432}:5432"

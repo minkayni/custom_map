@@ -2,7 +2,7 @@ import { defineConfig } from 'prisma/config'
 
 const databaseUrl =
     process.env.DATABASE_URL ??
-    'postgresql://mapuser:map_dev@localhost:5432/mapdb'
+    'postgresql://mapuser:CAMBIAR@localhost:5432/mapdb'
 
 export default defineConfig({
     schema: 'prisma/schema.prisma',
